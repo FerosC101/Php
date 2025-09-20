@@ -52,7 +52,6 @@ class Auth {
             $stmt->bindParam(':expires_at', $expires_at);
             $stmt->execute();
 
-            // Set session variables
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
@@ -70,13 +69,11 @@ class Auth {
             return false;
         }
 
-        // Check session timeout
         if (isset($_SESSION['login_time']) && (time() - $_SESSION['login_time']) > SESSION_TIMEOUT) {
             $this->logout();
             return false;
         }
 
-        // Validate session token in database
         if (isset($_SESSION['session_token'])) {
             return $this->validateSessionToken($_SESSION['session_token']);
         }
@@ -139,10 +136,8 @@ class Auth {
                 return ['success' => false, 'message' => 'Username or email already exists'];
             }
 
-            // Hash password
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert new user
             $query = "INSERT INTO users (username, email, password_hash) VALUES (:username, :email, :password_hash)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':username', $username);
