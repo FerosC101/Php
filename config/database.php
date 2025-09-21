@@ -2,8 +2,8 @@
 class Database {
     private $host = 'localhost';
     private $db_name = 'resume_app';
-    private $username = 'your_db_username'; // Change this
-    private $password = 'your_db_password'; // Change this
+    private $username = 'vince';
+    private $password = '426999'; 
     private $port = '5432';
     public $conn;
 
@@ -22,14 +22,12 @@ class Database {
     }
 }
 
-// Database configuration
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'resume_app');
-define('DB_USER', 'your_db_username'); // Change this
-define('DB_PASS', 'your_db_password'); // Change this
+define('DB_USER', 'vince'); 
+define('DB_PASS', '426999'); 
 define('DB_PORT', '5432');
 
-// Security configuration
-define('SESSION_TIMEOUT', 3600); // 1 hour in seconds
+define('SESSION_TIMEOUT', 3600);
 define('BCRYPT_COST', 12);
 ?>
