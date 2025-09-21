@@ -3,26 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ResumeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * Show the resume
+     */
     public function index()
     {
         $resumeData = $this->getResumeData();
         return view('resume.index', compact('resumeData'));
     }
 
+    /**
+     * Download resume as PDF
+     */
     public function download()
     {
         $resumeData = $this->getResumeData();
         return view('resume.pdf', compact('resumeData'));
     }
 
+    /**
+     * Get resume data
+     */
     private function getResumeData()
     {
         return [
@@ -81,7 +94,7 @@ class ResumeController extends Controller
             'achievements' => [
                 'Languages' => 'English, Filipino',
                 'Certifications' => 'Associate Data Analyst in SQL (Data Camp)',
-                'Awards/Activities' => 'Dean\'s Lister (1st year - 2nd year), World Engineering Day STM32 Hackathon – Champion, Technofusion 2025 – BI Dashboard Challenge – Champion, Technofusion 2025 – Hackathon – 2nd runner up, PacketHacks Hackathon 2025 - 4th place'
+                'Awards/Activities' => 'Dean\'s Lister (1st year - 2nd year), World Engineering Day STM32 Hackathon – Champion, Technofusion 2025 – BI Dashboard Challenge – Champion, Technofusion 2025 – Hackathon – 2nd runner up, PacketHacks Hackathon 2025 - Champion'
             ]
         ];
     }
